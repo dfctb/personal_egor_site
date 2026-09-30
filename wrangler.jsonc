@@ -1,20 +1,13 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "personal-egor-site",
+  "main": "src/worker.js",
   "compatibility_date": "2026-09-26",
-  "observability": {
-    "enabled": true
-  },
+  "observability": { "enabled": true },
   "assets": {
     "directory": ".",
-    "ignore": [
-      "**/node_modules/**",
-      "**/.git/**",
-      "**/.idea/**",
-      "package.json",
-      "package-lock.json",
-      "wrangler.jsonc",
-      "dev-tools/**"
-    ]
-  }
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  "routes": [{ "pattern": "qumcl.xeuqra.com", "custom_domain": true }]
 }
