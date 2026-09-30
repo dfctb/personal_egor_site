@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "personal-egor-site",
+  "compatibility_date": "2026-09-26",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "exclude": [
+      "node_modules",
+      ".git",
+      ".idea",
+      "package.json",
+      "package-lock.json",
+      "wrangler.jsonc",
+      "dev-tools"
+    ]
+  }
+}
