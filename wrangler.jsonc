@@ -9,5 +9,18 @@
     "not_found_handling": "404-page",
     "run_worker_first": ["/api/*"]
   },
-  "routes": [{ "pattern": "qumcl.xeuqra.com", "custom_domain": true }]
+  "routes": [
+    { "pattern": "qumcl.xeuqra.com",
+      "custom_domain": true
+    }
+  ],
+  "triggers": {
+    "crons": ["*/15 * * * *"]
+  },
+  "kv_namespaces": [
+    {
+      "binding": "qumcl_bandcamp",
+      "id": "81e9be704a48448388b169777ce6f8ad"
+    }
+  ]
 }
