@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>photos — qumcl</title>
+<meta name="description" content="qumcl — photos. Personal site of Egor Gerasenko.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/images/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<script>
+  try { document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"; } catch (e) {}
+</script>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="wrap">
+<div class="statusbar">
+  <span class="statusbar-brand">
+    <img src="/assets/images/qumcl_logo.png" alt="qumcl" class="statusbar-logo">
+    <span class="typewriter" data-text="qumcl // photos">qumcl // photos</span>
+  </span>
+  <span id="clock">—</span>
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">[ dark ]</button>
+</div>
+
+  <div class="hero">
+    <div class="id"><a href="/">&lt; back</a> — Egor Gerasenko — qumcl</div>
+    <h1>photos</h1>
+    <div class="tagline typewriter" data-phrases="photos" data-text="nothing here yet.">nothing here yet.</div>
+  </div>
+
+  <div class="box">
+    <div class="box-label">status <b>— photos</b></div>
+    <p>soon</p>
+  </div>
+
+  <footer>
+    <span>xeuqra records — <a href="https://xeuqra.com/">label site</a></span>
+    <span>© <span data-year></span> Egor Gerasenko Deykun (qumcl). All rights reserved.</span>
+  </footer>
+
+</div>
+
+<script src="/js/clock.js"></script>
+<script src="/js/typewriter.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+</html>

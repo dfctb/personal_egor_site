@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>music — qumcl</title>
+<meta name="description" content="qumcl — music. Personal site of Egor Gerasenko.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/images/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<script>
+  try { document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"; } catch (e) {}
+</script>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="wrap">
+<div class="statusbar">
+  <span class="statusbar-brand">
+    <img src="/assets/images/qumcl_logo.png" alt="qumcl" class="statusbar-logo">
+    <span class="typewriter" data-text="qumcl // music">qumcl // music</span>
+  </span>
+  <span id="clock">—</span>
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">[ dark ]</button>
+</div>
+
+  <div class="hero">
+    <div class="id"><a href="/">&lt; back</a> — Egor Gerasenko — qumcl</div>
+    <h1>music</h1>
+    <div class="tagline typewriter" data-phrases="music" data-text="everything below is streamed from bandcamp — nothing hosted here.">everything below is streamed from bandcamp — nothing hosted here.</div>
+  </div>
+
+  <div class="box">
+    <div class="box-label">latest <b>— release</b></div>
+    <div class="embed">
+      <iframe id="bc-player"
+        style="border:0; width:100%; height:120px;"
+        src="https://bandcamp.com/EmbeddedPlayer/album=3941879774/size=large/bgcol=f4f1ea/linkcol=b87400/tracklist=false/artwork=small/transparent=true/"
+        title="Bandcamp player" seamless>
+        <a href="https://qumcl.bandcamp.com/album/demo-tape-2025-2026-2">Demo Tape 2025–2026 on Bandcamp</a>
+      </iframe>
+      <div class="embed-caption" id="bc-caption">Demo Tape 2025–2026 — full catalog on <a href="https://qumcl.bandcamp.com/">qumcl.bandcamp.com</a></div>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="box-label">discography <b>— archive</b> <span id="release-count"></span></div>
+    <ul class="entries" id="releases">
+      <li class="loading-text">Loading releases...</li>
+    </ul>
+  </div>
+
+  <footer>
+    <span>xeuqra records — <a href="https://xeuqra.com/">label site</a></span>
+    <span>© <span data-year></span> Egor Gerasenko Deykun (qumcl). All rights reserved.</span>
+  </footer>
+
+</div>
+
+<script src="/js/page-music.js"></script>
+<script src="/js/clock.js"></script>
+<script src="/js/typewriter.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+</html>

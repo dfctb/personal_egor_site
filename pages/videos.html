@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>videos — qumcl</title>
+<meta name="description" content="qumcl — videos. Personal site of Egor Gerasenko.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/images/favicon-96x96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<script>
+  try { document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"; } catch (e) {}
+</script>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="wrap">
+<div class="statusbar">
+  <span class="statusbar-brand">
+    <img src="/assets/images/qumcl_logo.png" alt="qumcl" class="statusbar-logo">
+    <span class="typewriter" data-text="qumcl // videos">qumcl // videos</span>
+  </span>
+  <span id="clock">—</span>
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">[ dark ]</button>
+</div>
+
+  <div class="hero">
+    <div class="id"><a href="/">&lt; back</a> — Egor Gerasenko — qumcl</div>
+    <h1>videos</h1>
+    <div class="tagline typewriter" data-phrases="videos" data-text="nothing here yet.">nothing here yet.</div>
+  </div>
+
+  <div class="box">
+    <div class="box-label">latest <b>— video</b></div>
+    <div class="embed">
+      <div class="video-frame">
+        <iframe id="yt-player" title="YouTube player" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+      </div>
+      <div class="embed-caption" id="yt-caption">—</div>
+    </div>
+  </div>
+
+  <div class="art-filters">
+    <select id="year-filter" aria-label="Filter by year">
+      <option value="all">All years</option>
+    </select>
+    <button id="sort-btn" aria-label="Sort videos">Sort: Newest first ▼</button>
+  </div>
+
+  <div class="box">
+    <div class="box-label">archive <b>— videos</b> <span id="video-count"></span></div>
+    <ul class="art-container" id="video-container">
+      <li class="loading-text">Loading videos...</li>
+    </ul>
+  </div>
+
+  <footer>
+    <span>xeuqra records — <a href="https://xeuqra.com/">label site</a></span>
+    <span>© <span data-year></span> Egor Gerasenko Deykun (qumcl). All rights reserved.</span>
+  </footer>
+
+</div>
+
+<script src="/js/page-videos.js"></script>
+<script src="/js/clock.js"></script>
+<script src="/js/typewriter.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+</html>
