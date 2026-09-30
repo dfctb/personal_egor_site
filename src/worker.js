@@ -1,6 +1,9 @@
 const BASE = "https://qumcl.bandcamp.com";
 const HEADERS = {
-  "User-Agent": "Mozilla/5.0 (compatible; qumcl-site)"
+  "User-Agent":
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+  "Accept": "text/html,application/xhtml+xml",
+  "Accept-Language": "en-US,en;q=0.9"
 };
 
 const KV_KEY = "latest_release";
@@ -25,6 +28,14 @@ const json = (data, status = 200, extra = {}) =>
     }
   });
 
+const absolute = (p) => (/^https?:\/\//.test(p) ? p : BASE + p);
+
+// <title> страницы — нужен для диагностики (например, заглушка "Just a moment...")
+function pageTitle(html) {
+  const m = html.match(/<title[^>]*>([^<]*)<\/title>/i);
+  return m ? decode(m[1]).trim() : "";
+}
+
 // og:title с любым порядком атрибутов
 function extractTitle(page) {
   const m =
@@ -39,37 +50,73 @@ function extractTitle(page) {
   return i > -1 ? t.slice(0, i) : t;
 }
 
+// Достаём самый первый релиз из HTML страницы /music
+function parseFirstRelease(list) {
+  // Способ 1: JSON в атрибуте data-client-items (есть id, type, page_url, title)
+  const m = list.match(/data-client-items="([^"]+)"/);
+  if (m) {
+    try {
+      const items = JSON.parse(decode(m[1]));
+      const first = Array.isArray(items) ? items[0] : null;
+
+      if (first && first.page_url && first.id) {
+        return {
+          id: Number(first.id),
+          type: String(first.type).startsWith("a") ? "album" : "track",
+          url: absolute(first.page_url),
+          title: first.title ? String(first.title) : ""
+        };
+      }
+    } catch {
+      // падаем на способ 2
+    }
+  }
+
+  // Способ 2: первая ссылка на /album/... или /track/... (относительная или абсолютная)
+  const link = list.match(
+    /href=["'](?:https?:\/\/[^"'\/]*bandcamp\.com)?(\/(?:album|track)\/[^"'#?]+)["']/
+  );
+  if (link) {
+    return { url: BASE + link[1] };
+  }
+
+  return null;
+}
+
 // Получить самый свежий релиз с Bandcamp.
-// Если передан knownUrl и самый новый релиз на Bandcamp имеет тот же URL,
-// возвращает null (ничего нового, страницу релиза не скачиваем).
+// Если передан knownUrl и самый новый релиз имеет тот же URL — возвращает null
+// (ничего нового; страницу релиза не скачиваем).
 async function getLatestFromBandcamp(knownUrl) {
-  const listResponse = await fetch(`${BASE}/music`, {
-    headers: HEADERS
-  });
+  const listResponse = await fetch(`${BASE}/music`, { headers: HEADERS });
 
   if (!listResponse.ok) {
     throw new Error(`Bandcamp /music returned ${listResponse.status}`);
   }
 
   const list = await listResponse.text();
+  const found = parseFirstRelease(list);
 
-  // Первый album/track в /music считаем самым новым
-  const link = list.match(/href="(\/(?:album|track)\/[^"#?]+)"/);
-
-  if (!link) {
-    throw new Error("No releases found");
+  if (!found) {
+    throw new Error(
+      `No releases found in /music ` +
+        `(title="${pageTitle(list)}", length=${list.length}, ` +
+        `hasGrid=${list.includes("music-grid")}, ` +
+        `hasClientItems=${list.includes("data-client-items")})`
+    );
   }
 
-  const url = BASE + link[1];
-
   // Ссылка не изменилась — новых релизов нет
-  if (knownUrl && url === knownUrl) {
+  if (knownUrl && found.url === knownUrl) {
     return null;
   }
 
-  const pageResponse = await fetch(url, {
-    headers: HEADERS
-  });
+  // Если уже есть всё нужное — страницу релиза скачивать не надо
+  if (found.id && found.type && found.title) {
+    return found;
+  }
+
+  // Иначе берём id/type/title со страницы самого релиза
+  const pageResponse = await fetch(found.url, { headers: HEADERS });
 
   if (!pageResponse.ok) {
     throw new Error(`Bandcamp release page returned ${pageResponse.status}`);
@@ -87,7 +134,7 @@ async function getLatestFromBandcamp(knownUrl) {
   return {
     id: Number(id[1]),
     type: type[1] === "a" ? "album" : "track",
-    url,
+    url: found.url,
     title: extractTitle(page)
   };
 }
@@ -97,6 +144,8 @@ async function latest(request, env) {
   if (request.method !== "GET" && request.method !== "HEAD") {
     return json({ error: "Method not allowed" }, 405, { Allow: "GET, HEAD" });
   }
+
+  const debug = new URL(request.url).searchParams.has("debug");
 
   try {
     // Сначала читаем уже сохранённый релиз из KV
@@ -120,9 +169,16 @@ async function latest(request, env) {
     });
   } catch (e) {
     console.error("Latest release error:", String(e));
-    return json({ error: "Failed to load latest release" }, 502, {
-      "Cache-Control": "no-store"
-    });
+
+    // /api/latest?debug=1 показывает причину ошибки (удобно при настройке)
+    return json(
+      {
+        error: "Failed to load latest release",
+        ...(debug ? { detail: String(e) } : {})
+      },
+      502,
+      { "Cache-Control": "no-store" }
+    );
   }
 }
 
@@ -154,8 +210,6 @@ export default {
         return;
       }
 
-      // Подстраховка: тот же тип и id — значит, просто сменился адрес, но это тот же релиз
-      // (всё равно обновляем запись, чтобы url был актуальным)
       await env.qumcl_bandcamp.put(KV_KEY, JSON.stringify(release));
 
       console.log(`New release saved: ${release.title} (${release.type} ${release.id})`);
