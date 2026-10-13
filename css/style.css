@@ -235,9 +235,10 @@ footer{
 
 /* Стилизация стрелочки в select (для хромиума) */
 .art-filters select option {
-  var(--panel); /* Темный фон для выпадающего списка */
+  background: var(--panel); /* Темный фон для выпадающего списка */
   color: var(--fg);
 }
+
 
 
 
@@ -284,10 +285,11 @@ footer{
   justify-content: space-between;
   align-items: center;
   padding: 6px 10px;
-  var(--panel);
+  background: var(--panel);
   border-bottom: 1px solid var(--line);
   font-size: 12px;
 }
+
 .lightbox-title {
   color: var(--dim);
 }
@@ -336,10 +338,11 @@ footer{
   flex-direction: column;
   border: 1px solid var(--line);
   padding: 10px;
-  var(--panel);
+  background: var(--panel);
   cursor: pointer;
   transition: border-color 0.15s ease;
 }
+
 .art-item:hover {
   border-color: var(--amber);
 }
@@ -393,3 +396,86 @@ h1.typewriter { min-height: 1.2em; }             /* чтобы страница 
 .video-item .art-image{aspect-ratio:16/9;}
 .video-title{font-size:12.5px; margin-top:8px; line-height:1.4;}
 .entries .entries-divider{display:block; padding:18px 0 6px; color:var(--dim); font-size:12.5px;}
+
+.model-toggle{
+  position:absolute;
+  top:8px; right:10px;
+  z-index:2;
+  background:var(--bg);
+  color:var(--amber);
+  border:1px solid var(--line);
+  border-radius:0;
+  font-family:var(--mono);
+  font-size:12px;
+  padding:4px 10px;
+  cursor:pointer;
+}
+.model-toggle:hover{color:var(--fg); border-color:var(--amber);}
+.model-toggle:focus-visible{outline:1px solid var(--amber); outline-offset:2px;}
+
+/* ================= VALVE THEME (Steam 2003 / HL1) ================= */
+:root[data-theme="valve"]{
+  --bg:#4c5844;
+  --fg:#ffffff;
+  --dim:#d8ded3;
+  --line:#889180;
+  --amber:#c4b550;
+  --panel:#3e4637;
+  --scan:transparent;
+  --mono:Tahoma, Verdana, "Segoe UI", sans-serif;
+}
+:root[data-theme="valve"] body{
+  font-size:13px;
+  -webkit-font-smoothing:auto;
+}
+:root[data-theme="valve"] .statusbar-logo{ filter:invert(1); }
+
+/* выпуклые панели: светлый верх-лево, тёмный низ-право */
+:root[data-theme="valve"] .box,
+:root[data-theme="valve"] .art-item,
+:root[data-theme="valve"] .lightbox-window,
+:root[data-theme="valve"] .statusbar{
+  border:1px solid;
+  border-color:#889180 #282e22 #282e22 #889180;
+  background:var(--bg);
+}
+:root[data-theme="valve"] .statusbar{
+  padding:6px 10px;
+  background:var(--panel);
+}
+
+/* вдавленные области: наоборот */
+:root[data-theme="valve"] .viewport,
+:root[data-theme="valve"] .art-image,
+:root[data-theme="valve"] #lightbox-image{
+  border:1px solid;
+  border-color:#282e22 #889180 #889180 #282e22;
+}
+
+/* кнопки */
+:root[data-theme="valve"] .theme-toggle,
+:root[data-theme="valve"] .model-toggle,
+:root[data-theme="valve"] .art-filters select,
+:root[data-theme="valve"] .art-filters button{
+  background:var(--bg);
+  color:var(--fg);
+  border:1px solid;
+  border-color:#889180 #282e22 #282e22 #889180;
+  padding:3px 10px;
+}
+:root[data-theme="valve"] .theme-toggle:hover,
+:root[data-theme="valve"] .model-toggle:hover,
+:root[data-theme="valve"] .art-filters select:hover,
+:root[data-theme="valve"] .art-filters button:hover{
+  color:var(--amber);
+}
+:root[data-theme="valve"] .theme-toggle:active,
+:root[data-theme="valve"] .model-toggle:active,
+:root[data-theme="valve"] .art-filters button:active{
+  border-color:#282e22 #889180 #889180 #282e22;
+}
+
+/* шапка окна лайтбокса — как заголовок окна Steam */
+:root[data-theme="valve"] .lightbox-header{
+  background:var(--panel);
+}

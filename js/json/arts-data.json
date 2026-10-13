@@ -4,125 +4,143 @@
     "title": "01122025",
     "category": "uncategorized",
     "src": "/assets/images/arts/01122025.jpg",
-    "filename": "01122025.jpg"
+    "filename": "01122025.jpg",
+    "date": "2025-11-30T19:00:00.000Z"
   },
   {
     "id": "14072026",
     "title": "14072026",
     "category": "uncategorized",
     "src": "/assets/images/arts/14072026.jpg",
-    "filename": "14072026.jpg"
+    "filename": "14072026.jpg",
+    "date": "2026-07-13T19:00:00.000Z"
   },
   {
     "id": "16072026",
     "title": "16072026",
     "category": "uncategorized",
     "src": "/assets/images/arts/16072026.jpg",
-    "filename": "16072026.jpg"
+    "filename": "16072026.jpg",
+    "date": "2026-07-15T19:00:00.000Z"
   },
   {
     "id": "18072026",
     "title": "18072026",
     "category": "uncategorized",
     "src": "/assets/images/arts/18072026.jpg",
-    "filename": "18072026.jpg"
-  },
-  {
-    "id": "19122024",
-    "title": "19122024",
-    "category": "uncategorized",
-    "src": "/assets/images/arts/19122024.png",
-    "filename": "19122024.png"
+    "filename": "18072026.jpg",
+    "date": "2026-07-17T19:00:00.000Z"
   },
   {
     "id": "19122024_1",
     "title": "19122024 1",
     "category": "uncategorized",
     "src": "/assets/images/arts/19122024 1.png",
-    "filename": "19122024 1.png"
+    "filename": "19122024 1.png",
+    "date": "2024-12-18T19:00:00.000Z"
   },
   {
     "id": "19122024_2",
     "title": "19122024 2",
     "category": "uncategorized",
     "src": "/assets/images/arts/19122024 2.png",
-    "filename": "19122024 2.png"
+    "filename": "19122024 2.png",
+    "date": "2024-12-18T19:00:00.000Z"
   },
   {
     "id": "19122024_3",
     "title": "19122024 3",
     "category": "uncategorized",
     "src": "/assets/images/arts/19122024 3.png",
-    "filename": "19122024 3.png"
+    "filename": "19122024 3.png",
+    "date": "2024-12-18T19:00:00.000Z"
   },
   {
     "id": "19122024_4",
     "title": "19122024 4",
     "category": "uncategorized",
     "src": "/assets/images/arts/19122024 4.png",
-    "filename": "19122024 4.png"
+    "filename": "19122024 4.png",
+    "date": "2024-12-18T19:00:00.000Z"
   },
   {
     "id": "19122024_5",
     "title": "19122024 5",
     "category": "uncategorized",
     "src": "/assets/images/arts/19122024 5.png",
-    "filename": "19122024 5.png"
+    "filename": "19122024 5.png",
+    "date": "2024-12-18T19:00:00.000Z"
   },
   {
     "id": "19122024_6",
     "title": "19122024 6",
     "category": "uncategorized",
     "src": "/assets/images/arts/19122024 6.png",
-    "filename": "19122024 6.png"
+    "filename": "19122024 6.png",
+    "date": "2024-12-18T19:00:00.000Z"
   },
   {
-    "id": "20122024",
-    "title": "20122024",
+    "id": "19122024",
+    "title": "19122024",
     "category": "uncategorized",
-    "src": "/assets/images/arts/20122024.png",
-    "filename": "20122024.png"
+    "src": "/assets/images/arts/19122024.png",
+    "filename": "19122024.png",
+    "date": "2024-12-18T19:00:00.000Z"
   },
   {
     "id": "20122024_1",
     "title": "20122024 1",
     "category": "uncategorized",
     "src": "/assets/images/arts/20122024 1.png",
-    "filename": "20122024 1.png"
+    "filename": "20122024 1.png",
+    "date": "2024-12-19T19:00:00.000Z"
   },
   {
     "id": "20122024_2",
     "title": "20122024 2",
     "category": "uncategorized",
     "src": "/assets/images/arts/20122024 2.png",
-    "filename": "20122024 2.png"
+    "filename": "20122024 2.png",
+    "date": "2024-12-19T19:00:00.000Z"
+  },
+  {
+    "id": "20122024",
+    "title": "20122024",
+    "category": "uncategorized",
+    "src": "/assets/images/arts/20122024.png",
+    "filename": "20122024.png",
+    "date": "2024-12-19T19:00:00.000Z"
   },
   {
     "id": "25112025",
     "title": "25112025",
     "category": "uncategorized",
     "src": "/assets/images/arts/25112025.jpg",
-    "filename": "25112025.jpg"
+    "filename": "25112025.jpg",
+    "date": "2025-11-24T19:00:00.000Z"
   },
   {
     "id": "28012025",
     "title": "28012025",
     "category": "uncategorized",
     "src": "/assets/images/arts/28012025.png",
-    "filename": "28012025.png"
+    "filename": "28012025.png",
+    "date": "2025-01-27T19:00:00.000Z"
   },
   {
     "id": "29112025",
     "title": "29112025",
     "category": "uncategorized",
     "src": "/assets/images/arts/29112025.jpg",
-    "filename": "29112025.jpg"
+    "filename": "29112025.jpg",
+    "date": "2025-11-28T19:00:00.000Z"
   },
   {
     "id": "30082025",
     "title": "30082025",
     "category": "uncategorized",
     "src": "/assets/images/arts/30082025.jpg",
-    "filename": "30082025.jpg"
+    "filename": "30082025.jpg",
+    "date": "2025-08-29T19:00:00.000Z"
   }
 ]

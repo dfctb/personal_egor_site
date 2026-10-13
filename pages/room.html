@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>room — qumcl</title>
+<meta name="description" content="qumcl — room. Interactive 3D scene.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<script type="importmap">
+{ "imports": { "three": "/js/vendor/three/build/three.module.js", "three/addons/": "/js/vendor/three/examples/jsm/" } }
+</script>
+<script>
+  try { document.documentElement.dataset.theme = localStorage.getItem("theme") || "valve"; } catch (e) {}
+</script>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/room.css">
+</head>
+<body>
+
+<!-- шапка (её высота нужна для sticky-сцены) -->
+<div class="wrap" id="top">
+  <div class="statusbar">
+    <span class="statusbar-brand">
+      <img src="/assets/images/qumcl_logo.png" alt="qumcl" class="statusbar-logo">
+      <span class="typewriter" data-text="qumcl // room">qumcl // room</span>
+    </span>
+    <span id="clock">—</span>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">[ theme ]</button>
+  </div>
+</div>
+
+<!-- 3D-сцена на высоту экрана под шапкой; страница скроллится как обычно -->
+<div id="tour">
+  <div id="stage">
+    <canvas id="c"></canvas>
+    <div id="msg">loading scene…</div>
+
+    <a id="home" href="/">&lt; back</a>
+
+    <!-- подписи: data-wp = номер точки пути камеры (см. CAM в room.js); показываются, пока камера «висит» в этой точке -->
+    <div class="cap" data-wp="0"><b>ROOM</b><span>qumcl studio</span></div>
+    <div class="cap" data-wp="3"><b>TURNTABLES</b><span>vinyl only</span></div>
+    <div class="cap" data-wp="4"><b>MIXER</b><span>dynacord cms600</span></div>
+    <div class="cap" data-wp="6"><b>QUMCL</b><span>click anything</span></div>
+    <div class="cap" data-wp="7"><b>WALL OF RECORDS</b><span>xeuqra records</span></div>
+
+    <button id="back" type="button">← back</button>
+    <div id="info">
+      <div class="nm" id="nm"></div>
+      <a id="go" target="_blank" rel="noopener noreferrer" href="#">open link ↗</a>
+    </div>
+    <div id="dbg" hidden></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="box">
+    <div class="box-label">select <b>— spot</b></div>
+    <ul class="bootmenu" id="spot-list"></ul>
+  </div>
+
+  <footer>
+    <span>xeuqra records — <a href="https://xeuqra.com/">label site</a></span>
+    <span>© <span data-year></span> Egor Gerasenko Deykun (qumcl). All rights reserved.</span>
+  </footer>
+</div>
+
+<script type="module" src="/js/room.js"></script>
+<script src="/js/clock.js"></script>
+<script src="/js/typewriter.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+</html>

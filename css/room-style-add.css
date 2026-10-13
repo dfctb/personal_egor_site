@@ -1,0 +1,21 @@
+/* ---- room scene (добавить в конец style.css) ---- */
+#room-bar{position:absolute; left:0; right:0; top:0; height:3px; z-index:3;}
+#room-fill{display:block; height:100%; width:0; background:var(--amber);}
+#room-msg{position:absolute; left:10px; top:10px; z-index:3; font-size:12px; color:var(--dim); max-width:80%; word-break:break-all;}
+#room-msg[hidden], #room-back[hidden], .room-info[hidden]{display:none;}
+#room-back{top:8px; right:10px;}
+.room-info{
+  position:absolute; left:10px; bottom:30px; z-index:3;
+  max-width:320px; padding:10px 12px;
+  background:var(--bg); border:1px solid var(--line);
+  font-size:13px;
+}
+.room-info a{color:var(--amber); display:inline-block; margin-top:6px;}
+.spot{
+  position:absolute; left:0; top:0; z-index:2;
+  width:26px; height:26px;
+  background:var(--bg); color:var(--amber);
+  border:1px solid var(--amber); border-radius:0;
+  font:12px var(--mono); cursor:pointer;
+}
+.spot:hover{background:var(--amber); color:var(--bg);}

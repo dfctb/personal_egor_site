@@ -1,0 +1,207 @@
+/* ROOM — стили полноэкранной 3D-сцены.
+   Подключается после /css/style.css (переменные --amber, --mono берутся оттуда).
+   Заменяет старый room-style-add.css — его из style.css можно удалить. */
+
+/* Helvetica Neue для подписей: заголовок — Black, вторая строка — Thin.
+   Хочешь Heavy вместо Black — замени имя файла в первом @font-face. */
+@font-face {
+    font-family: 'HN Room';
+    src: url('/assets/fonts/HelveticaNeueBlack.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'HN Room';
+    src: url('/assets/fonts/HelveticaNeueThin.otf') format('opentype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --hdr: 60px;
+    --accent: var(--amber, #f2e600);
+}
+
+#tour {
+    position: relative;
+}
+
+/* сцена — обычный блок на высоту экрана под шапкой; страница скроллится как обычно */
+#stage {
+    position: relative;
+    height: calc(100vh - var(--hdr));
+    height: calc(100svh - var(--hdr));
+    overflow: hidden;
+    background: #0b0b0b;
+    color: #fff; /* сцена тёмная при любой теме сайта */
+    font-family: var(--mono, monospace);
+}
+
+#c {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: pan-y;
+}
+
+.cap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    padding: 0 6vw;
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .6s ease;
+    text-shadow: 0 0 8px rgba(0, 0, 0, .8), 0 0 24px rgba(0, 0, 0, .7);
+    font-family: 'HN Room', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+.cap.on {
+    opacity: 1;
+}
+
+.cap b {
+    display: block;
+    font-size: clamp(30px, 7vw, 104px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: .03em;
+}
+
+.cap span {
+    display: block;
+    margin-top: 1.1em;
+    font-size: clamp(13px, 1.9vw, 26px);
+    font-weight: 100;
+    letter-spacing: .38em;
+}
+
+#msg {
+    position: absolute;
+    inset: 0;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0b0b0b;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    font-size: 14px;
+    text-align: center;
+    padding: 24px;
+}
+
+#msg.hide {
+    display: none;
+}
+
+#home {
+    position: absolute;
+    top: 18px;
+    left: 16px;
+    z-index: 6;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px #000;
+    opacity: .8;
+}
+
+#home:hover {
+    opacity: 1;
+}
+
+#back {
+    position: absolute;
+    top: 18px;
+    right: 16px;
+    z-index: 6;
+    display: none;
+    background: rgba(0, 0, 0, .55);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .4);
+    font: inherit;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 9px 14px;
+    cursor: pointer;
+}
+
+#back.show {
+    display: block;
+}
+
+#info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 22px;
+    z-index: 6;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px #000;
+}
+
+#info.show {
+    display: flex;
+}
+
+#info .nm {
+    font-size: clamp(13px, 2vw, 20px);
+    font-weight: 700;
+}
+
+#go {
+    display: none;
+    background: var(--accent);
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 11px 20px;
+    font-size: 13px;
+    letter-spacing: .16em;
+}
+
+#go.show {
+    display: inline-block;
+}
+
+#go:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+/* подсказка режима ?free / ?debug */
+#dbg {
+    position: absolute;
+    left: 10px;
+    top: 44px;
+    z-index: 7;
+    max-width: 80%;
+    font-size: 12px;
+    color: #fff;
+    word-break: break-all;
+    text-shadow: 0 0 6px #000;
+}
+
+#dbg[hidden] {
+    display: none;
+}
